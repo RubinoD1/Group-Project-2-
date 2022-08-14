@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  color: #333;
+}
+header {
+  border-bottom: 1px solid #ccc;
+  padding: 2%;
+  background-color: #321a08;
+  color: white;
+}
+.H_link  {
+  padding-top: 5%;
+  padding-bottom: 2%;
+  color: rgb(223, 248, 235);
+  display: inline;
+  font-size: 25px;
+  text-decoration: none;
+
+}
+#header_title{
+  padding: 2%;
+  width: 380px;
+  background-color: rgb(223, 248, 235);
+  box-shadow: 2px 5px #888888;
+  font-size: larger;
+  text-align: center;  
+  font-weight: bold;
+  
+  border-radius: 10px;
+}
+
+.h_container{
+  width:450px; 
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+.title{
+  font-size: large;
+  display:block;
+}
+.info{
+  display: inline-flex;
+  font-size: small;
+}
+.post,.comment-form,.new-post-form,.login-form{
+  
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.card{
+  width: 100%;
+  border-style: solid;
+  background-color:  rgb(223, 248, 235);
+  min-height: 100px;
+}
+
+a,#btn_type{
+  color:green;
+}
+.edit-post-form{
+  padding: 5%;
+}
+
+
+.list,.post-list{
+  list-style-type: none;
+}
