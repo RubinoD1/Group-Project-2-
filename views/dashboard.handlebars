@@ -59,16 +59,16 @@
           <span class='sr-only'>(current)</span></a>
       </li>
       <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Create List">
-        <a class='nav-link' href='#'>Create List</a>
+        <a class='nav-link' id="create-list" style="cursor: pointer;">Create List</a>
       </li>
       <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="View List">
-        <a class='nav-link' href='#'>View List</a>
+        <a class='nav-link' id="view-list" style="cursor: pointer;">View List</a>
       </li>
-      <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Upload">
+      {{!-- <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Upload">
         <a class='nav-link' href='#'>Upload</a>
-      </li>
+      </li> --}}
       <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
-        <a class='nav-link' href='#'>Logout</a>
+        <a class='nav-link' href='/logout'>Logout</a>
       </li>
     </ul>
   </div>
@@ -76,7 +76,7 @@
 <div class="cutom-row">
 <div class='row'>
   <div class='col-md-3' id='left_list'></div>
-  <div class='col-md-9'>
+  <div class='col-md-9' id='right_list'>
     <ol class="row">  
       {{#each posts as |post|}}
 
@@ -88,5 +88,29 @@
 </div>
 <div id='cat' data={{cats}}></div>
 </div>
+  <div class="row">
+    <div class="col-12" id='viewItem'>
+  </div>
+</div>
 
+
+{{!-- Model --}}
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong>Create List</strong></h5>       
+      </div>
+      <div class="modal-body">
+        <label>List Name</label><br>
+        <input type="text" placeholder="Input List Name" id="listname"></input>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="mdclose">Close</button>
+        <button type="button" class="btn btn-primary" id="mdsave">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src='/javascript/homepage.js'></script>
+<script src='/javascript/createlist.js'></script> 
