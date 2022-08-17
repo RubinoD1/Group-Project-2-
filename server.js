@@ -29,16 +29,6 @@ const sess = {
   }),
 };
 
-app.use(session(sess));
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
-// turn on routes
-app.use(routes);
-
 // Google Outh
 passport.use(
   new GoogleStrategy(
@@ -63,6 +53,16 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+
+app.use(session(sess));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+// turn on routes
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
