@@ -4,6 +4,8 @@ const sequelize = require('./config/connection');
 const path = require('path');
 const session = require('express-session');
 const helpers = require('./utils/helpers');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require('passport');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -27,6 +29,7 @@ const sess = {
 };
 
 app.use(session(sess));
+app.use(passport.authenticate('session'));
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,7 +41,31 @@ app.set('view engine', 'handlebars');
 app.use(routes);
 
 
-// turn on connection to db and server
+// Google Outh
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: '/oauth2/redirect/google',
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      return done(null, profile);
+    }
+  )
+);
+
+// Serializing the users
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+// De-Serializing the users
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
