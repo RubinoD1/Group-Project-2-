@@ -47,7 +47,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: '/oauth2/redirect/google',
+      callbackURL: 'http://vast-depths-33526.herokuapp.com/oauth2/redirect/google',
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
