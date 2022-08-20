@@ -68,8 +68,7 @@ As a shopper, I want a easy way to keep track of the products I want.
    - Product notes 
    - Quantity (default is 1)
 
-
-
+- Add a image for products
 
 
 ## Technology 
