@@ -31,15 +31,8 @@ const sess = {
 app.use(session(sess));
 app.use(passport.authenticate('session'));
 
-app.use(passport.authenticate('session'));
-const helpers = require('./utils/helpers');
 
-const hbs = exphbs.create({ helpers });
-
-
-
-
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
