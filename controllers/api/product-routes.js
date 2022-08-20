@@ -86,6 +86,7 @@ router.get('/:id', (req, res) => {
 
 // create new product
 router.post('/', (req, res) => {
+
    Product.create(req.body)
       .then((product) => {
           // if there's product tags, we need to create pairings to bulk create in the ProductTag model

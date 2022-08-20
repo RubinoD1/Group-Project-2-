@@ -351,3 +351,11 @@ footer {
 .cutom-row .row {
   justify-content: space-evenly;
 }
+.input_form{
+  
+  border: 1px solid rgb(59, 190, 3);
+}
+
+.input_form{
+  list-style-type: none;
+}

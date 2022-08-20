@@ -64,6 +64,7 @@ router.post('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end();
     });
+    
   } else {
     res.status(404).end();
   }
@@ -136,7 +137,6 @@ router.post('/login', (req, res) => {
       email: req.body.email,
     },
   }).then((dbUserData) => {
-    console.log(dbUserData);
     if (!dbUserData) {
       res.status(400).json({ message: 'No user with that email address!' });
       return;
@@ -149,11 +149,13 @@ router.post('/login', (req, res) => {
       return;
     }
 
+    console.log("login1",req.session.loggedIn,req.session.user_id);
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
+      console.log("login2",req.session.loggedIn,req.session.user_id);
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
   });

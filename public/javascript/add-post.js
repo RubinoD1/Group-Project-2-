@@ -2,7 +2,7 @@ let fileElement = document.getElementById('img');
 let chosenImage = document.getElementById('chosen-image');
 let fileName = document.getElementById('img');
 
-console.log('wwyyyyw');
+
 fileElement.onchange = () => {
   console.log('www');
   let reader = new FileReader();

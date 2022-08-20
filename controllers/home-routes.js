@@ -69,6 +69,8 @@ router.get('/dashboard', (req, res) => {
           self.findIndex((t) => JSON.stringify(t) === JSON.stringify(thing))
       );
       let cats = JSON.stringify(result);
+      
+      console.log(posts);
       res.render('dashboard', {
         posts,
         cats,

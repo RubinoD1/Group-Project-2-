@@ -13,11 +13,9 @@ for (var i = 0; i < category.length; i++) {
 async function addHandler(event) {
   event.preventDefault();
   product_id=event.target.id;  
-  console.log("*************************>>>>",product_id);
-  const response = await fetch("/shopping/"+product_id, {
-    method: 'POST',
+  const response = await fetch("/api/products/"+product_id, {
+    method: 'DELETE',
     body: JSON.stringify({
-      product_id
     }),
   })
   

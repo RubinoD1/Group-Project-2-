@@ -20,7 +20,8 @@ Category.init(
       // define category_name column
       category_name: {
           type: DataTypes.STRING,
-          allowNull: false
+          allowNull: false,
+          unique:true
       }
   },
   {

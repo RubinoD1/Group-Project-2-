@@ -15,7 +15,8 @@ Tag.init(
       },
       // define tag_name column
       tag_name: {
-          type: DataTypes.STRING
+          type: DataTypes.STRING,          
+          unique:true
       }
   },
   {

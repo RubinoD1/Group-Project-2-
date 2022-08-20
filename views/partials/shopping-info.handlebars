@@ -1,0 +1,25 @@
+<div class='col-10 col-md-10 col-lg-4 col m-2'>
+  <div
+    class='card category-card p-3'
+    style='width: 18rem;'
+    style='max-height: 400px;'
+    class='post'
+  >
+    <img
+      class='card-img-top'
+      src='/images/{{product.image_name}}'
+      alt='{{product.product_name}}'      
+      style='max-height: 240px;'
+    />
+    <div class='card-body'>
+      <h5 class='card-title'>{{product.product_name}}</h5>
+      <p class='card-text'>{{product.product_note}} </p>
+    </div>
+    <ol class='list-group list-group-flush'>
+      <li class='list-group-item'>Stock: {{product.quantity}}</li>
+      <li class='list-group-item'>Price: {{product.price}}</li>
+      <li class='list-group-item'>Quantity: {{product.quantity}}</li>
+    </ol>
+    <button class='btn btn-warning' id="delete_post" data="{{id}}">Remove item</button>
+  </div>
+</div>
