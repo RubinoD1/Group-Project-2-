@@ -1,36 +1,36 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag, User } = require('../../models');
-
+const { upload } = require('../../config/multer-config');
 // The `/api/products` endpoint
 
 // find all products
 router.get('/', (req, res) => {
   Product.findAll({
-      attributes: [
-        'id',
-        'product_name',
-        'price',
-        'desired_price',
-        'product_note',
-        'quantity' ,
-        'category_id',
-        'user_id',
-        'image_name'
-      ],
-      include: [
-          {
-              model: Category,
-              attributes: ['id', 'category_name']
-          },
-          {
-              model: Tag,
-              attributes: ['id', 'tag_name']
-          },
-          {
-            model: User,
-            attributes: ['username']
-          }
-      ]
+    attributes: [
+      'id',
+      'product_name',
+      'price',
+      'desired_price',
+      'product_note',
+      'quantity',
+      'category_id',
+      'user_id',
+      'image_name',
+    ],
+    include: [
+      {
+        model: Category,
+        attributes: ['id', 'category_name'],
+      },
+      {
+        model: Tag,
+        attributes: ['id', 'tag_name'],
+      },
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
   })
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
@@ -51,25 +51,25 @@ router.get('/:id', (req, res) => {
       'price',
       'desired_price',
       'product_note',
-      'quantity' ,
+      'quantity',
       'category_id',
       'user_id',
-      'image_name'
+      'image_name',
     ],
-     include: [
-          {
-              model: Category,
-              attributes: ['id', 'category_name']
-          },
-          {
-              model: Tag,
-              attributes: ['id', 'tag_name']
-          },
-          {
-              model: User,
-              attributes: ['username']
-          }
-      ]
+    include: [
+      {
+        model: Category,
+        attributes: ['id', 'category_name'],
+      },
+      {
+        model: Tag,
+        attributes: ['id', 'tag_name'],
+      },
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
   })
     .then((dbProductData) => {
       if (!dbProductData) {
@@ -85,37 +85,58 @@ router.get('/:id', (req, res) => {
 });
 
 // create new product
-router.post('/', (req, res) => {
-   Product.create(req.body)
-      .then((product) => {
-          // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-          if (req.body.tagIds.length) {
-              const productTagIdArr = req.body.tagIds.map((tag_id) => {
-                  return {
-                      product_id: product.id,
-                      tag_id,
-                    };
-              });
-              return ProductTag.bulkCreate(productTagIdArr);
-          }
-          // if no product tags, just respond
-          res.status(200).json(product);
-      })
-      .then((productTagIds) => res.status(200).json(productTagIds))
-      .catch((err) => {
-          console.log(err);
-          res.status(400).json(err);
-      });
+router.post('/', upload.array('image', 1), (req, res) => {
+  Product.create({
+    product_name: req.body.product_name,
+    price: req.body.price,
+    desired_price: req.body.desired_price,
+    quantity: req.body.quantity,
+    product_note: req.body.product_note,
+    image_name: req.files[0].filename,
+    category_id: req.body.category_id,
+    user_id: req.session.user_id,
+  })
+    .then((product) => {
+      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+      if (req.body.tagIds.length) {
+        const productTagIdArr = req.body.tagIds.map((tag_id) => {
+          return {
+            product_id: product.id,
+            tag_id,
+          };
+        });
+        return ProductTag.bulkCreate(productTagIdArr);
+      }
+      // if no product tags, just respond
+      res.status(200).json(product);
+    })
+    .then((productTagIds) => res.status(200).json(productTagIds))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 // update product
-router.put('/:id', (req, res) => {
+router.put('/:id', upload.array('image', 1), (req, res) => {
   // update product data
-  Product.update(req.body, {
-    where: {
-      id: req.params.id,
+  Product.update(
+    {
+      product_name: req.body.product_name,
+      price: req.body.price,
+      desired_price: req.body.desired_price,
+      quantity: req.body.quantity,
+      product_note: req.body.product_note,
+      image_name: req.files[0].filename,
+      category_id: req.body.category_id,
+      user_id: req.session.user_id,
     },
-  })
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
     .then((product) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
@@ -162,7 +183,7 @@ router.delete('/:id', (req, res) => {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
-      res.json(dbProductData);
+      res.status(200).json(dbProductData);
     })
     .catch((err) => {
       console.log(err);

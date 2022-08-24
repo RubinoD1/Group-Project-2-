@@ -1,10 +1,9 @@
-let fileElement = document.getElementById('img');
+let fileElement = document.getElementById('pProductImage');
 let chosenImage = document.getElementById('chosen-image');
-let fileName = document.getElementById('img');
+let fileName = document.getElementById('pProductImage');
 
-console.log('wwyyyyw');
 fileElement.onchange = () => {
-  console.log('www');
+  debugger;
   let reader = new FileReader();
   reader.readAsDataURL(fileElement.files[0]);
   reader.onload = () => {

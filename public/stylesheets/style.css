@@ -93,8 +93,15 @@ a,
   list-style-type: none;
 }
 #chosen-image {
-  width: 120px;
-  height: 120px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  border-radius: 50%;
+  object-fit: initial;
+}
+
+.image-container {
+  text-align: center;
 }
 
 a {
@@ -267,7 +274,6 @@ footer {
 }
 
 .parent {
-  /* margin-top: 20vh; */
   font-weight: bolder;
   font-size: 1.5rem;
   height: 100vh;
@@ -311,6 +317,13 @@ footer {
   .wish-list-nav {
     height: 100px !important;
   }
+  #btn-save-list {
+    margin-top: 0px;
+  }
+  #btn-save-list,
+  #btn-create-product {
+    margin-top: 5px;
+  }
 }
 
 .company-title {
@@ -350,4 +363,21 @@ footer {
 
 .cutom-row .row {
   justify-content: space-evenly;
+}
+
+.product-tool {
+  margin-bottom: 5px;
+  gap: 2rem;
+}
+.product-tool {
+  display: none;
+}
+
+.category-card:hover .product-tool {
+  display: block;
+  cursor: pointer;
+}
+
+#btn-save-list {
+  margin-top: 10px;
 }

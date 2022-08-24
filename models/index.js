@@ -5,6 +5,7 @@ const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 const User = require('./User');
 const List = require('./List');
+const ListTag = require('./ListTag');
 
 // Products belongsTo Category
 
@@ -40,6 +41,24 @@ Tag.belongsToMany(Product, {
   foreignKey: 'tag_id',
 });
 
+User.hasMany(List, {
+  foreignKey: 'user_id',
+});
+
+List.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
+List.belongsToMany(Product, {
+  through: ListTag,
+  foreignKey: 'list_id',
+});
+
+Product.belongsToMany(List, {
+  through: ListTag,
+  foreignKey: 'product_id',
+});
+
 module.exports = {
   Product,
   Category,
@@ -47,4 +66,5 @@ module.exports = {
   ProductTag,
   User,
   List,
+  ListTag,
 };

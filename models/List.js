@@ -10,16 +10,25 @@ List.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    wish_list: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    email: {
+    list_name: {
       type: DataTypes.STRING,
-      validate: {
-        isEmail: true,
+      allowNull: false,
+      unique: true,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
       },
     },
+    // product_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'product',
+    //     key: 'id',
+    //   },
+    // },
   },
   { sequelize, freezeTableName: true, underscored: true, modelName: 'list' }
 );
