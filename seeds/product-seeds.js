@@ -18,7 +18,7 @@ const productData = [
     product_note: 'I need this book for my English course.',
     category_id: '1',
     user_id: '1',
-    image_name: '2022813213835.png',
+    image_name: 'Tolstoy.jpg',
     tagIds: [1],
   },
   {

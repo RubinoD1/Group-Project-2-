@@ -2,11 +2,16 @@
   "name": "group-project-2-",
   "version": "1.0.0",
   "description": "Who is this for? What is the goal?",
+  "engines": {
+    "node": "16.x"
+},
+
   "main": "server.js",
+ 
   "scripts": {
     "test": "jest",
     "seeds": "node seeds/index.js",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

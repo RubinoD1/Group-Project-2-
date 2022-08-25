@@ -1,15 +1,30 @@
 # Wishlist-it product tracker
 
-GitHub Repository:
+GitHub Repository: https://github.com/RubinoD1/Wishlist-it-product-tracker
 
-Heroku Live Page:
+Heroku Live Page: https://vast-depths-33526.herokuapp.com/
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Contributers](#contributers)
+- [User Story](#user-story)
+- [Features](#features)
+- [Technology](#technology)
+- [Environment Variables](#environment-variables)
+- [Run Locally](#run-locally)
+- [Create The Database](#create-the-database)
+- [Seed The Database](#seed-the-database)
+- [Running Tests](#running-tests)
+- [Screenshots](#screenshots)
+- [Requirments](#requirments)
 
 ## Introduction
 
 Wishlist-it is a full-stack app that allows a user to create and manage a list of products.
-The inspiration was to create an app that is similiar to a shopping list, but with the ability to easily manage information such as desried price, product notes, and other related information about a product.
+The inspiration was to create an app that is similar to a shopping list, but with the ability to easily manage information such as desired price, product notes, and other related information about a product.
 
-## Authors
+## Contributers
 
 - Arjun Sharman
 
@@ -29,7 +44,7 @@ The inspiration was to create an app that is similiar to a shopping list, but wi
 
 ## User Story
 
-As a shopper I want a easy way to keep track of the products I want.
+As a shopper, I want a easy way to keep track of the products I want.
 
 ## Features
 
@@ -49,16 +64,20 @@ As a shopper I want a easy way to keep track of the products I want.
   - Product notes
   - Quantity (default is 1)
 
-- The ability to add a image to a product
+- Add a image for products
 
-## Dependencies (Technologies Used)
+## Technology
 
 - Node.js
-- express
+- Express
 - SQL
-- mysql2
-- dotenv
-- jest
+- MySQL2
+- Jest
+- Heroku
+- JawsDB
+- Handlebars.js
+- Express-session
+- Google OAuth
 
 ## Environment Variables
 
@@ -79,13 +98,13 @@ A example .env file can be found in the root of the repository. The file is:
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/RubinoD1/Wishlist-it-product-tracker.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd Wishlist-it-product-tracker
 ```
 
 Install dependencies
@@ -100,7 +119,7 @@ Start the server
   npm run start
 ```
 
-## Create the database
+## Create The Database
 
 Login to MySQL
 
@@ -126,7 +145,7 @@ Exit MySQL
   quit;
 ```
 
-## Seed the database
+## Seed The Database
 
 To seed the database
 
@@ -143,6 +162,12 @@ To run tests, run the following command
 ```
 
 ## Screenshots
+
+![Home page](./public/images/Homepage.png)
+
+![Dashboard Main](./public/images/dashboard%20main.png)
+
+![Dashboard Category Filter](./public/images/dashboard%20category%20filter.png)
 
 ## Requirments
 
