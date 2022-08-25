@@ -22,7 +22,6 @@ for (var i = 0; i < category.length; i++) {
 }
 
 function toggleHandle(event) {
-  debugger;
   if (document.querySelector('.navbar').style.marginBottom === '') {
     document.querySelector('.navbar').style.marginBottom = '400px';
   } else {

@@ -1,10 +1,10 @@
 {{>navigation}}
 <article class='col-12 col-md-6 m-3'>
 
-       <figure class='image-container'>
-          <img id='chosen-image' id="pProductImage" src="/images/home.png" >
-          <figcaption id='file-name'></figcaption>
-        </figure>
+  <figure class='image-container'>
+    <img id='chosen-image' id="pProductImage" src="/images/home.png" >
+    <figcaption id='file-name'></figcaption>
+  </figure>
 
   <form id='create-product'>    
     <div class='form-group'>
@@ -14,6 +14,7 @@
         class='form-control'
         id='pName'
         placeholder='Enter Product Name'
+        required
       />
     </div>
     <div class='form-group'>
@@ -23,6 +24,7 @@
         class='form-control'
         id='pPrice'
         placeholder='Enter Product Price'
+        required
       />
     </div>
     <div class='form-group'>
@@ -32,6 +34,7 @@
         class='form-control'
         id='pDesiredPrice'
         placeholder='Enter Product Desired Price'
+        required
       />
     </div>
     <div class='form-group'>
@@ -61,7 +64,7 @@
     </div>
     <div class='form-group form-check'>
       <label for='drop-down' class='font-weight-bold'>Select Category:</label>
-      <select name='drop-down' id='pCategory'>
+      <select name='drop-down' id='pCategory' required>
         <option value='' selected disabled hidden>Select Category</option>
         {{#each category as | category |}}
           <option
@@ -74,7 +77,7 @@
     </div>
     <div class='form-group form-check'>
       <label for='drop-down' class='font-weight-bold'>Select Priority:</label>
-      <select name='drop-down' id='pPriority'>
+      <select name='drop-down' id='pPriority' required>
         <option value='' selected disabled hidden>Select Priority</option>
         <option class='dropdown-item' value='low' data-id='1'>Low</option>
         <option class='dropdown-item' value='medium' data-id='2'>Medium</option>

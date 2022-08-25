@@ -1,12 +1,12 @@
 var categories = JSON.parse(sessionStorage.getItem('categories'));
 var dropDownEI = document.getElementById('pCategory');
-
 var option = document.createElement('option');
 option = document.createElement('option');
 option.setAttribute('selected', true);
 option.setAttribute('disabled', 'disabled');
 option.text = 'Select Category';
 dropDownEI.append(option);
+dropDownEI.setAttribute('required', '');
 
 categories.forEach((element) => {
   if (element != null) {
@@ -20,7 +20,6 @@ categories.forEach((element) => {
 
 async function editProduct(event) {
   event.preventDefault();
-
   var formData = new FormData();
   var id = document.querySelector('#pName').getAttribute('data-id');
   const picture_url = document.querySelector('input[type="file"]');
@@ -41,6 +40,10 @@ async function editProduct(event) {
         'data-id'
       )
   );
+  let url =
+    picture_url.files.length > 0
+      ? picture_url.files[0]
+      : picture_url.getAttribute('src');
   formData.append('product_name', product_name);
   formData.append('price', price);
   formData.append('desired_price', desired_price);
@@ -48,7 +51,7 @@ async function editProduct(event) {
   formData.append('product_note', product_note);
   formData.append('category_id', category_id);
   formData.append('tagIds[]', tagIds);
-  formData.append('image', picture_url.files[0]);
+  formData.append('image', url);
 
   const response = await fetch(`/api/products/${id}`, {
     method: 'put',

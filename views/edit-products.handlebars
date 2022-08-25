@@ -17,6 +17,7 @@
         placeholder='Enter Product Name'
         value="{{post.product_name}}"
         data-id="{{id}}"
+        required
       /> 
     </div>
     <div class='form-group'>
@@ -27,6 +28,7 @@
         id='pPrice'
         placeholder='Enter Product Price'
         value="{{post.price}}"
+        required
       />
     </div>
     <div class='form-group'>
@@ -37,6 +39,7 @@
         id='pDesiredPrice'
         placeholder='Enter Product Desired Price'
         value="{{post.desired_price}}"
+        required
       />
     </div>
     <div class='form-group'>
@@ -48,6 +51,7 @@
         value="1"
         placeholder='Enter Quantity'
         value="{{post.quantity}}"
+        required
       />
     </div>
     <div class='form-group'>
@@ -60,6 +64,7 @@
         id='pProductNote'
         placeholder='Enter Product Note'
         value="{{post.product_note}}"
+        required
       />
     </div>
     <div class='form-group'>
@@ -79,7 +84,7 @@
     </div>
     <div class='form-group form-check'>
       <label for='drop-down' class='font-weight-bold'>Select Priority:</label>
-      <select name='drop-down' id='pPriority'>
+      <select name='drop-down' id='pPriority'   required>
         <option value='' selected disabled hidden>Select Priority</option>
         <option class='dropdown-item' value='low' data-id='1'>Low</option>
         <option class='dropdown-item' value='medium' data-id='2'>Medium</option>

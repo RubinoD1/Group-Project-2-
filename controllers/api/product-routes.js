@@ -120,6 +120,9 @@ router.post('/', upload.array('image', 1), (req, res) => {
 // update product
 router.put('/:id', upload.array('image', 1), (req, res) => {
   // update product data
+  let image =
+    req.files[0] === undefined ? req.body.image : req.files[0].filename;
+  console.log('123111111111111111111' + image);
   Product.update(
     {
       product_name: req.body.product_name,
@@ -127,7 +130,7 @@ router.put('/:id', upload.array('image', 1), (req, res) => {
       desired_price: req.body.desired_price,
       quantity: req.body.quantity,
       product_note: req.body.product_note,
-      image_name: req.files[0].filename,
+      image_name: image,
       category_id: req.body.category_id,
       user_id: req.session.user_id,
     },
