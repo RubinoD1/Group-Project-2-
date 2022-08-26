@@ -18,6 +18,9 @@ router.get('/', (req, res) => {
       'category_id',
       'image_name',
     ],
+    where: {
+      user_id: req.session.user_id,
+    },
     include: [
       {
         model: Category,

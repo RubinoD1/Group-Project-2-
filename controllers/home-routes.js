@@ -34,7 +34,6 @@ router.get(
 // Redirecting to dashboard
 // get all posts for homepage
 router.get('/dashboard', withAuth, (req, res) => {
-  console.log('======================home all');
   Product.findAll({
     attributes: [
       'id',
@@ -46,6 +45,9 @@ router.get('/dashboard', withAuth, (req, res) => {
       'category_id',
       'image_name',
     ],
+    where: {
+      user_id: req.session.user_id,
+    },
     include: [
       {
         model: Category,
@@ -59,7 +61,6 @@ router.get('/dashboard', withAuth, (req, res) => {
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      // console.log('allCategories' + allCategories);
       let cat = [];
       let temp = 1;
       for (let i = 0; i < posts.length; i++) {
@@ -70,6 +71,7 @@ router.get('/dashboard', withAuth, (req, res) => {
           index ===
           self.findIndex((t) => JSON.stringify(t) === JSON.stringify(thing))
       );
+
       let cats = JSON.stringify(result);
       res.render('dashboard', {
         posts,

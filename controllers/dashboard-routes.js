@@ -5,10 +5,10 @@ const { Product, Category } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get all posts for homepage
-router.get('/:id', withAuth,(req, res) => {
-  console.log('======================home all',req.session.user_id);
+router.get('/:id', withAuth, (req, res) => {
+  console.log('======================home all', req.session.user_id);
   Category.findAll({
-      //Product.user_id: req.session.user_id
+    //Product.user_id: req.session.user_id
     attributes: ['id', 'category_name'],
     include: [
       {
@@ -31,19 +31,19 @@ router.get('/:id', withAuth,(req, res) => {
       const post = dbCategoryData.map((post) => post.get({ plain: true }));
 
       //const post = res.json(dbCategoryData);
-      console.log(post);
+      // console.log(post);
       let cat = [];
       let posts = [];
       let match = 0;
       for (let i = 0; i < post.length; i++) {
-        if (parseInt(post[i].id) === parseInt(req.params.id)){
+        if (parseInt(post[i].id) === parseInt(req.params.id)) {
           match = i;
           cat.push({
             id: post[i].id,
             category_name: post[i].category_name,
           });
-        if (post[i].products[0].user_id==req.session.user_id)
-          posts = post[i].products;
+          if (post[i].products[0].user_id == req.session.user_id)
+            posts = post[i].products;
         }
       }
       for (let i = 0; i < posts.length; i++) {
@@ -51,18 +51,18 @@ router.get('/:id', withAuth,(req, res) => {
       }
       let cats = JSON.stringify(cat);
       console.log(posts);
-      res.render('mydashboard', {
+      console.log(cats);
+      res.render('dashboard', {
         posts,
         cats,
         loggedIn: req.session.loggedIn,
       });
     })
     .catch((err) => {
-      
-      console.log("err");
+      console.log('err');
       console.log(err);
       res.status(500).json(err);
-      render("/")
+      render('/');
     });
 });
 

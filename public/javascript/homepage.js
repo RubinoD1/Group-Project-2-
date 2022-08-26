@@ -1,4 +1,6 @@
+debugger;
 let category = JSON.parse(document.getElementById('cat').getAttribute('data'));
+
 console.log('html', category);
 sessionStorage.setItem(
   'categories',
