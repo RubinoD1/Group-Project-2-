@@ -1,11 +1,12 @@
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 const express = require('express');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const path = require('path');
 const session = require('express-session');
 const helpers = require('./utils/helpers');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const passport = require('passport');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
@@ -24,22 +25,9 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
-
-app.use(session(sess));
-app.use(passport.authenticate('session'));
-
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
-// turn on routes
-app.use(routes);
-
 
 // Google Outh
 passport.use(
@@ -65,6 +53,16 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
   done(null, user);
 });
+
+app.use(session(sess));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+// turn on routes
+app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

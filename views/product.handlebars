@@ -1,0 +1,91 @@
+{{>navigation}}
+<article class='col-12 col-md-6 m-3'>
+
+  <figure class='image-container'>
+    <img id='chosen-image' id="pProductImage" src="/images/home.png" >
+    <figcaption id='file-name'></figcaption>
+  </figure>
+
+  <form id='create-product'>    
+    <div class='form-group'>
+      <label class='font-weight-bold'>Product Name</label>
+      <input
+        type='text'
+        class='form-control'
+        id='pName'
+        placeholder='Enter Product Name'
+        required
+      />
+    </div>
+    <div class='form-group'>
+      <label class='font-weight-bold'>Product Price</label>
+      <input
+        type='text'
+        class='form-control'
+        id='pPrice'
+        placeholder='Enter Product Price'
+        required
+      />
+    </div>
+    <div class='form-group'>
+      <label class='font-weight-bold'>Desired Price</label>
+      <input
+        type='text'
+        class='form-control'
+        id='pDesiredPrice'
+        placeholder='Enter Product Desired Price'
+        required
+      />
+    </div>
+    <div class='form-group'>
+      <label class='font-weight-bold'>Quantity</label>
+      <input
+        type='text'
+        class='form-control'
+        id='pQuantity'
+        value="1"
+        placeholder='Enter Product Quantity Price'
+      />
+    </div>
+    <div class='form-group'>
+      <label class='font-weight-bold'>Product Note</label>
+      <input
+        rows='4'
+        cols='50'
+        type='textarea'
+        class='form-control'
+        id='pProductNote'
+        placeholder='Enter Product Note'
+      />
+    </div>
+    <div class='form-group'>      
+      <label class='font-weight-bold'>Product Image</label>
+       <input type='file' id='pProductImage' name='img' accept='image/*'  placeholder='Enter Product Note'/>      
+    </div>
+    <div class='form-group form-check'>
+      <label for='drop-down' class='font-weight-bold'>Select Category:</label>
+      <select name='drop-down' id='pCategory' required>
+        <option value='' selected disabled hidden>Select Category</option>
+        {{#each category as | category |}}
+          <option
+            class='dropdown-item'
+            value='low'
+            data-id={{category.id}}
+          >{{category.category_name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='form-group form-check'>
+      <label for='drop-down' class='font-weight-bold'>Select Priority:</label>
+      <select name='drop-down' id='pPriority' required>
+        <option value='' selected disabled hidden>Select Priority</option>
+        <option class='dropdown-item' value='low' data-id='1'>Low</option>
+        <option class='dropdown-item' value='medium' data-id='2'>Medium</option>
+        <option class='dropdown-item' value='high' data-id='3'>High</option>
+      </select>
+    </div>
+    <button type='submit' class='btn btn-primary'>Submit</button>
+  </form>
+  <script src='/javascript/product.js'></script>
+  <script src='/javascript/add-post.js'></script>
+</article>

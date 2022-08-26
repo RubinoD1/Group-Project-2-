@@ -24,7 +24,7 @@ ProductTag.init(
           }
       },
       // define tag_id column
-      product_id: {
+      tag_id: {
           type: DataTypes.INTEGER,
           references: {
             //this is reference to the tag model 

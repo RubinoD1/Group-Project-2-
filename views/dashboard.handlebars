@@ -1,81 +1,19 @@
-{{!-- <div class="wrapper">
-<header>
-<div class="">
-    <h1>
-        <div class="h_container">  
-          <a class="H_link" href="/">Home</a>
-          <a class="H_link" href="/upload">Upload</a>
-           
-          {{#if loggedIn}}
-          <a class="H_link" id="logout" href="/">Logout</a>        
-          {{/if}}
-       </div>
-       </br> 
-    </h1>
-</div>
-</header>
-
-<div class="row">
-  <div class="col-12 col-md-3 left" id="left_list">
-  </div>
-  <div class="col-12 col-md-9 right">
-    <ol>  
-      {{#each posts as |post|}}
-
-      {{> category-info post }}
-
-      {{/each}}
-    </ol>
-  </div>
-</div>
-</div>
-
-
- <div class="col-12 col-md-9 right">
- </div>
-<div id="cat" data={{cats}}></div>
- {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}} --}}
-
-{{! Navigation }}
-<nav class='navbar navbar-expand-lg navbar-light bg-light wish-list-nav'>
-  <a class='navbar-brand' href='#'><h1 class='company-title'>Wish List</h1></a>
-  <button
-    class='navbar-toggler'
-    type='button'
-    data-toggle='collapse'
-    data-target='#navbarNav'
-    aria-controls='navbarNav'
-    aria-expanded='false'
-    aria-label='Toggle navigation'
-  >
-    <span class='navbar-toggler-icon'></span>
-  </button>
-  <div class='collapse navbar-collapse' id='navbarNav'>
-    <ul class='navbar-nav nav-list'>
-      <li class='nav-item active' data-bs-toggle="tooltip" data-bs-placement="top" title="Home">
-        <a class='nav-link' href='/dashboard'>Home
-          <span class='sr-only'>(current)</span></a>
-      </li>
-      <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="View List">
-        <a class='nav-link' href='/shopping'>View List</a>
-      </li>
-      <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Upload">
-        <a class='nav-link' href='/upload'>Create Items</a>
-      </li>
-      <li class='nav-item' data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
-        <a class='nav-link' id="logout" href='/'>Logout</a>
-
-      </li>
-    </ul>
-  </div>
-</nav>
+{{>navigation}}
 <div class="cutom-row">
 <div class='row'>
-  <div class='col-md-3' id='left_list'></div>
-  <div class='col-md-9'>
-    <ol class="row" id="display">  
+  <div class='col-md-3' id='left_list'>
+    <a class="btn btn-success" id="btn-create-category" href="/category">Create Category
+      <i class="fa-solid fa-plus"></i>
+    </a>
+    <a class="btn btn-success" id="btn-create-product" href="/products">Create Products
+      <i class="fa-solid fa-plus"></i>
+    </a>
+     <a class="btn btn-warning" id="btn-save-list" style="display: none;">Save to List<span id="count"></span>
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  </div>
+  <div class='col-md-9' id='right_list'>
+    <ol class="row" id="parent-product">      
       {{#each posts as |post|}}
 
      {{> category-info post }}
@@ -86,5 +24,31 @@
 </div>
 <div id='cat' data={{cats}}></div>
 </div>
+  <div class="row">
+    <div class="col-12" id='viewItem'>
+  </div>
+</div>
 
+
+{{!-- Model --}}
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><strong>Create List</strong></h5>       
+      </div>
+      <div class="modal-body">
+        <label>List Name</label><br>
+        <input type="text" placeholder="Input List Name" id="listname"></input>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="mdclose">Close</button>
+        <button type="button" class="btn btn-primary" id="mdsave">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src='/javascript/homepage.js'></script>
+<script src='/javascript/createlist.js'></script>
+<script src='/javascript/delete-product.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
